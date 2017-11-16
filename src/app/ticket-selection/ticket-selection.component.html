@@ -15,10 +15,10 @@
                   <div class="card-content">
                     <div class="row">
                       <div class="col-md-12">
-                        <h4>User ID: </h4>
-                        <h4>Name: </h4>
-                        <h4>Account No: </h4>
-                        <h4>Card Ref. No: </h4>
+                        <h4>User ID: {{passenger.id}}</h4>
+                        <h4>Name: {{passenger.name}}</h4>
+                        <h4 *ngIf="passenger.account != null">Account No: {{passenger.account}}</h4>
+                        <h4>Card Ref. No: {{passenger.card.tokenRef}}</h4>
                         <div class="col-md-12">
                             <div class="form-group">
                                 <div class="form-group">
