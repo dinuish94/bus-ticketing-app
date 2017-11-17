@@ -6,45 +6,57 @@
       <div class="card-content">
         <div class="row">
           <div class="col-md-12 col-md-offset-1">
-            <h3>Bus ID: </h3>
-            <h3>Bus Number: </h3>
+            <h3>Bus ID: 1</h3>
+            <h3>Bus Number: 174</h3>
             <div class="row">
               <div class="col-md-8 col-md-offset-1">
                 <div class="card">
-
+                  <!-- User Details -->
                   <div class="card-content">
                     <div class="row">
                       <div class="col-md-12">
                         <h4>User ID: {{passenger.id}}</h4>
                         <h4>Name: {{passenger.name}}</h4>
-                        <h4 *ngIf="passenger.account != null">Account No: {{passenger.account}}</h4>
-                        <h4>Card Ref. No: {{passenger.card.tokenRef}}</h4>
+                        <h4 *ngIf="passenger.account != null">Account No: {{passenger.account.accountId}}</h4>
+                        <h4>Card Ref. No: {{token}}</h4>
                         <div class="col-md-12">
+                          <div class="form-group">
                             <div class="form-group">
-                                <div class="form-group">
-                                    <label for="sel1">Select Start Location:</label>
-                                    <select class="form-control" id="sel1">
-                                      <option>1</option>
-                                      <option>2</option>
-                                      <option>3</option>
-                                      <option>4</option>
-                                    </select>
-                                  </div>
+                              <label for="sel1">Select Start Location:</label>
+                              <select class="form-control" id="sel1" [(ngModel)]="startLocation">
+                                <option *ngFor="let busHalt of busHalts" [value]="busHalt.location">
+                                  {{busHalt.location}}
+                                </option>
+                              </select>
                             </div>
                           </div>
-                          <div class="col-md-12">
-                              <div class="form-group">
-                                  <div class="form-group">
-                                      <label for="sel1">Select Destination:</label>
-                                      <select class="form-control" id="sel1">
-                                        <option>1</option>
-                                        <option>2</option>
-                                        <option>3</option>
-                                        <option>4</option>
-                                      </select>
-                                    </div>
-                              </div>
+                        </div>
+                        <div class="col-md-12">
+                          <div class="form-group">
+                            <div class="form-group">
+                              <label for="sel1">Select Destination:</label>
+                              <select class="form-control" id="sel1" [(ngModel)]="endLocation">
+                                <option *ngFor="let busHalt of busHalts" [value]="busHalt.location">
+                                  {{busHalt.location}}
+                                </option>
+                              </select>
                             </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="card" *ngIf="showPayment">
+                  <!-- Payment Details -->
+                  <div class="card-content">
+                    <div class="row">
+                      <div class="col-md-12">
+                        <h3 style="text-align:center">Fine summary</h3>
+                        <h4>Distance: {{trip.distance}} KM</h4>
+                        <h4>Rate: Rs. {{trip.rate}} per KM</h4>
+                        <h4>Fee: Rs. {{trip.price}}</h4>
+                        <h4>Your current balance is: Rs. {{trip.currentBalance}}</h4>
                       </div>
                     </div>
                   </div>
@@ -53,12 +65,19 @@
             </div>
           </div>
         </div>
+        <div class="alert alert-danger" *ngIf="showPayment && payWithCash">
+            <div class="container">
+                Your card balance is insufficient for this trip! You can still take the journey by paying with Cash.
+           </div>
+       </div>
       </div>
 
       <div class="card-action">
         <div class="row">
           <div class="col-md-3 col-sm-6 pull-right">
-            <button href="#fakelink" class="btn btn-block btn-lg btn-round btn-default">Submit</button>
+            <button href="#fakelink" *ngIf="!showPayment" class="btn btn-block btn-lg btn-round btn-default" (click)="addTrip()">Submit</button>
+            <button href="#fakelink" *ngIf="showPayment && payWithCash" class="btn btn-block btn-lg btn-round btn-default" (click)="makePaymentWithCash()">Pay With Cash</button>            
+            <button href="#fakelink" *ngIf="showPayment && !payWithCash" class="btn btn-block btn-lg btn-round btn-default" (click)="makePaymentWithCard()">Pay With Card</button>                        
           </div>
         </div>
       </div>
