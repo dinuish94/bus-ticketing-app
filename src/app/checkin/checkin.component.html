@@ -6,8 +6,8 @@
         <div class="card-content">
           <div class="row">
             <div class="col-md-12 col-md-offset-1">
-              <h3>Bus ID: </h3>
-              <h3>Bus Number: </h3>
+              <h3>Bus ID: 1</h3>
+              <h3>Bus Number: 174</h3>
             </div>
           </div>
         </div>
@@ -34,14 +34,14 @@
         <div class="modal-body">
           <div class="col-sm-12">
             <div class="form-group">
-              <input type="text" value="" placeholder="Reference No." class="form-control">
+              <input type="text" value="" placeholder="Reference No." class="form-control" [(ngModel)]="trip.tokenRef">
             </div>
           </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default btn-simple" data-dismiss="modal">Close</button>
           <div class="divider"></div>
-          <button type="button" class="btn btn-info btn-simple">Save</button>
+          <button type="button" class="btn btn-info btn-simple" (click)="validateToken()">Submit</button>
         </div>
       </div>
     </div>

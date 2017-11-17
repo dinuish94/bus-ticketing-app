@@ -10,7 +10,7 @@ import { CheckoutComponent } from './checkout/checkout.component';
 
 const routes: Routes = [
     { path: 'home', component: HomeComponent /*,canActivate:[AuthGuard]*/ },
-    { path: 'tickets', component: TicketSelectionComponent },
+    { path: 'tickets/:token', component: TicketSelectionComponent },
     { path: 'checkin', component: CheckinComponent },   
     { path: 'checkout', component: CheckoutComponent },        
     { path: '',redirectTo: 'home', pathMatch: 'full'}
