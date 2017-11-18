@@ -7,12 +7,14 @@ import { HomeComponent } from './home/home.component';
 import { TicketSelectionComponent } from './ticket-selection/ticket-selection.component';
 import { CheckinComponent } from './checkin/checkin.component';
 import { CheckoutComponent } from './checkout/checkout.component';
+import { DriverDashboardComponent } from './driver-dashboard/driver-dashboard.component';
 
 const routes: Routes = [
-    { path: 'home', component: HomeComponent /*,canActivate:[AuthGuard]*/ },
+    { path: 'home', component: HomeComponent },
     { path: 'tickets/:token', component: TicketSelectionComponent },
     { path: 'checkin', component: CheckinComponent },   
-    { path: 'checkout', component: CheckoutComponent },        
+    { path: 'checkout', component: CheckoutComponent },       
+    { path: 'dashboard', component: DriverDashboardComponent }, 
     { path: '',redirectTo: 'home', pathMatch: 'full'}
 ]
   

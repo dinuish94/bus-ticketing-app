@@ -10,15 +10,27 @@
             <h3>Bus Number: 174</h3>
             <div class="row">
               <div class="col-md-8 col-md-offset-1">
-                <div class="card">
-                  <!-- User Details -->
-                  <div class="card-content">
-                    <div class="row">
-                      <div class="col-md-12">
-                        <h4>User ID: {{passenger.id}}</h4>
-                        <h4>Name: {{passenger.name}}</h4>
-                        <h4 *ngIf="passenger.account != null">Account No: {{passenger.account.accountId}}</h4>
-                        <h4>Card Ref. No: {{token}}</h4>
+                <!-- User Details -->
+                <div class="row">
+                  <div class="w3-container" style="padding-top:5%; margin-bottom:5%">
+                    <div class="w3-card-4">
+                      <header class="w3-container w3-light-grey">
+                        <h3>{{passenger.name}}</h3>
+                      </header>
+                      <div class="w3-container" style="padding:5%">
+                        <img src="./assets/img/avatar.png" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
+                        <h5 *ngIf="passenger.account != null">Account No: {{passenger.account.accountId}}</h5>
+                        <h5>Card Ref. No: {{token}}</h5>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Trip Details -->
+                <div class="row">
+                  <div class="w3-container">
+                    <div class="w3-card-4">
+                      <div class="w3-container" style="padding:5%; margin-bottom:5%">
                         <div class="col-md-12">
                           <div class="form-group">
                             <div class="form-group">
@@ -47,16 +59,25 @@
                     </div>
                   </div>
                 </div>
-                <div class="card" *ngIf="showPayment">
-                  <!-- Payment Details -->
-                  <div class="card-content">
-                    <div class="row">
-                      <div class="col-md-12">
-                        <h3 style="text-align:center">Fine summary</h3>
-                        <h4>Distance: {{trip.distance}} KM</h4>
-                        <h4>Rate: Rs. {{trip.rate}} per KM</h4>
-                        <h4>Fee: Rs. {{trip.price}}</h4>
-                        <h4>Your current balance is: Rs. {{trip.currentBalance}}</h4>
+
+                <!-- Payment Details -->
+                <div class="row">
+                  <div class="w3-container" *ngIf="showPayment">
+                    <div class="w3-card-4">
+                      <header class="w3-container w3-light-grey">
+                        <h3>Fine Summary</h3>
+                      </header>
+                      <div class="w3-container" style="padding:5%; margin-bottom:5%">
+                        <h4>
+                          <b>Distance:</b> {{trip.distance}} KM</h4>
+                        <h4>
+                          <b>Rate: </b> Rs. {{trip.rate}} per KM</h4>
+                        <h4>
+                          <b>Card Balance: </b>Rs. {{trip.currentBalance}}</h4>
+                        <hr/>
+                        <h3 style="text-align:center">
+                          <b> Your total fee is: Rs. {{trip.price}} </b>
+                        </h3>
                       </div>
                     </div>
                   </div>
@@ -66,18 +87,18 @@
           </div>
         </div>
         <div class="alert alert-danger" *ngIf="showPayment && payWithCash">
-            <div class="container">
-                Your card balance is insufficient for this trip! You can still take the journey by paying with Cash.
-           </div>
-       </div>
+          <div class="container">
+            Your card balance is insufficient for this trip! You can still take the journey by paying with Cash.
+          </div>
+        </div>
       </div>
 
       <div class="card-action">
         <div class="row">
           <div class="col-md-3 col-sm-6 pull-right">
-            <button href="#fakelink" *ngIf="!showPayment" class="btn btn-block btn-lg btn-round btn-default" (click)="addTrip()">Submit</button>
-            <button href="#fakelink" *ngIf="showPayment && payWithCash" class="btn btn-block btn-lg btn-round btn-default" (click)="makePaymentWithCash()">Pay With Cash</button>            
-            <button href="#fakelink" *ngIf="showPayment && !payWithCash" class="btn btn-block btn-lg btn-round btn-default" (click)="makePaymentWithCard()">Pay With Card</button>                        
+            <button href="#fakelink" *ngIf="!showPayment" class="btn btn-block btn-lg btn-fill btn-default" (click)="addTrip()">Submit</button>
+            <button href="#fakelink" *ngIf="showPayment && payWithCash" class="btn btn-block btn-lg btn-fill btn-default" (click)="makePaymentWithCash()">Pay With Cash</button>
+            <button href="#fakelink" *ngIf="showPayment && !payWithCash" class="btn btn-block btn-lg btn-fill btn-default" (click)="makePaymentWithCard()">Pay With Card</button>
           </div>
         </div>
       </div>
