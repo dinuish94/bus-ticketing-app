@@ -5,6 +5,8 @@ import { TicketSelectionService } from './ticket-selection.service';
 import { BusStop } from '../models/busStop.model';
 import { Trip } from '../models/trip.model';
 import swal from 'sweetalert2';
+import { DriverDashboardService } from '../driver-dashboard/driver-dashboard.service';
+import { DriverDashboardComponent } from '../driver-dashboard/driver-dashboard.component';
 
 @Component({
   selector: 'app-ticket-selection',
@@ -21,8 +23,13 @@ export class TicketSelectionComponent implements OnInit {
   trip: Trip = new Trip();
   showPayment: boolean = false;
   payWithCash: boolean = false;
+  ticketCount: number = 0;
 
-  constructor(private _route: ActivatedRoute, private _router: Router, private _ticketSelection: TicketSelectionService) { }
+  constructor(private _route: ActivatedRoute,
+    private _router: Router,
+    private _ticketSelection: TicketSelectionService) {
+
+  }
 
   ngOnInit() {
     this.token = this._route.snapshot.params['token'];
@@ -30,20 +37,20 @@ export class TicketSelectionComponent implements OnInit {
     this.getPassengerInformation();
   }
 
-  getPassengerInformation(){
+  getPassengerInformation() {
     this._ticketSelection.findPassengerByToken(this.token).subscribe(passenger => {
       console.log(passenger);
       this.passenger = passenger;
     })
   }
 
-  getBusHalts(){
+  getBusHalts() {
     this._ticketSelection.getBusHalts().subscribe(bushalts => {
       this.busHalts = bushalts;
     })
   }
 
-  addTrip(){
+  addTrip() {
     this.trip.busId = 1;
     this.trip.endLocation = this.endLocation;
     this.trip.startLocation = this.startLocation;
@@ -53,26 +60,27 @@ export class TicketSelectionComponent implements OnInit {
       this.showPayment = true;
       this.trip = trip;
 
-      if (trip.payWithCash != 0){
+      if (trip.payWithCash != 0) {
         this.payWithCash = true;
       }
     })
   }
 
-  makePaymentWithCard(){
+  makePaymentWithCard() {
+    this.trip.tokenRef = this.token;
     this._ticketSelection.confirmPayment(this.trip).subscribe(trip => {
       this.showWelcomeNotification();
     })
   }
 
-  makePaymentWithCash(){
+  makePaymentWithCash() {
     this.trip.payWithCash = 1;
     this._ticketSelection.confirmPayment(this.trip).subscribe(trip => {
       this.showWelcomeNotification();
     })
   }
 
-  showWelcomeNotification(){
+  showWelcomeNotification() {
     swal({
       title: 'Welcome Aboard!',
       text: '',

@@ -10,6 +10,7 @@ export class Trip {
     distance: number;
     rate: number;
     currentBalance: number;
+    passenger: string;
 
     constructor(values: Object = {}) {
         Object.assign(this, values);

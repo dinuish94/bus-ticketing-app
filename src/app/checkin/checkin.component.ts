@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Trip } from '../models/trip.model';
 import { CheckinService } from './checkin.service';
 import swal from 'sweetalert2';
+import { DriverDashboardComponent } from '../driver-dashboard/driver-dashboard.component';
 
 @Component({
   selector: 'app-checkin',
@@ -39,7 +40,7 @@ export class CheckinComponent implements OnInit {
           type: 'error',
           confirmButtonText: 'OK',
         }).then(() => {
-
+          
           // Add pay with cash option
 
         });
