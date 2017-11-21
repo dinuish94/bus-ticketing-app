@@ -11,6 +11,7 @@ export class Trip {
     rate: number;
     currentBalance: number;
     passenger: string;
+    paymentDone: boolean;
 
     constructor(values: Object = {}) {
         Object.assign(this, values);

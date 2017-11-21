@@ -24,6 +24,7 @@ export class TicketSelectionComponent implements OnInit {
   showPayment: boolean = false;
   payWithCash: boolean = false;
   ticketCount: number = 0;
+  hasDayPass: boolean = false;
 
   constructor(private _route: ActivatedRoute,
     private _router: Router,
@@ -41,6 +42,13 @@ export class TicketSelectionComponent implements OnInit {
     this._ticketSelection.findPassengerByToken(this.token).subscribe(passenger => {
       console.log(passenger);
       this.passenger = passenger;
+      this._ticketSelection.getDayPasses(this.token).subscribe(data => {
+        console.log(data._body);
+        if (data._body === "true") {
+          this.hasDayPass = true;
+          console.log(this.token);
+        }
+      })
     })
   }
 
