@@ -12,6 +12,7 @@ export class TicketSelectionService {
 
   private _checkinUrl = 'http://localhost:8080/checkin';
   private _busHalts = 'http://localhost:8080/busStops';
+  private _daypassUrl = 'http://localhost:8080/daypasses';
 
   constructor(private _http: Http) { }
 
@@ -36,6 +37,12 @@ export class TicketSelectionService {
   confirmPayment(trip: Trip): Observable<Trip> {
     return this._http.put(this._checkinUrl+'/',trip)
     .map((response: Response) => response.json())
+    .do(data => console.log(data))
+  }
+
+  getDayPasses(token: String): Observable<any>{
+    return this._http.get(this._daypassUrl+'?token='+token)
+    .map((response: Response) => <any>response)
     .do(data => console.log(data))
   }
 }

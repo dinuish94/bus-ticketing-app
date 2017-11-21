@@ -29,8 +29,22 @@ export class CheckoutComponent implements OnInit {
           confirmButtonText: 'OK',
         }).then(() => {
           this._checkinService.checkout(this.trip).subscribe( data => {
-            this._router.navigateByUrl('/home');
-            location.reload();
+            if(!data.paymentDone && data.payWithCash==1){
+              swal({
+                title: 'Error!',
+                text: 'Please make the payment by cash! ',
+                type: 'error',
+                confirmButtonText: 'OK',
+              }).then(() => {
+      
+                // Add pay with cash option
+      
+              });
+            }
+            else {
+              this._router.navigateByUrl('/home');
+              location.reload();
+            }
           })
         });
       }

@@ -22,6 +22,10 @@
                         <h5 *ngIf="passenger.account != null">Account No: {{passenger.account.accountId}}</h5>
                         <h5>Card Ref. No: {{token}}</h5>
                       </div>
+                      <footer class="w3-container w3-blue" style="text-align:center; padding-bottom:2%" *ngIf="hasDayPass">
+                        <h4>You have a daypass for today!</h4>
+                        <p>Your fee will not be deducted from the card balance.</p>
+                      </footer>
                     </div>
                   </div>
                 </div>
