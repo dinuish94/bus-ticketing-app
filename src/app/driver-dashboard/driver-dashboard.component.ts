@@ -14,6 +14,8 @@ export class DriverDashboardComponent implements OnInit {
   
   timerSubscription;
   trips: Array<Trip>;
+  search: string = "";
+  filteredTrips: Array<Trip>;
 
   constructor(private _driverService: DriverDashboardService) {
     // this.refreshData();
@@ -27,6 +29,11 @@ export class DriverDashboardComponent implements OnInit {
     this._driverService.getTrips(1).subscribe(trips => {
       console.log(JSON.stringify(trips));
       this.trips = trips;
+      console.log(this.search)
+      if(this.search == ""){
+        this.filteredTrips = trips;
+      }
+      
       this.subscribeToData();
     });
   }
@@ -45,6 +52,15 @@ export class DriverDashboardComponent implements OnInit {
     this._driverService.makePaymentByCash(tripId).subscribe(trips => {
       this.refreshData();
     });
+  }
+
+  valuechange(newValue){
+    if (newValue == ""){
+      this.filteredTrips = this.trips;
+    } else {
+      console.log(newValue);
+      this.filteredTrips = this.trips.filter(trip=> trip.endLocation.startsWith(newValue));
+    }
   }
 
 }
