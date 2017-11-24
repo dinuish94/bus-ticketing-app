@@ -25,6 +25,7 @@ export class TicketSelectionComponent implements OnInit {
   payWithCash: boolean = false;
   ticketCount: number = 0;
   hasDayPass: boolean = false;
+  validLocation: boolean = true;
 
   constructor(private _route: ActivatedRoute,
     private _router: Router,
@@ -98,5 +99,15 @@ export class TicketSelectionComponent implements OnInit {
       this._router.navigateByUrl('/home');
       location.reload();
     });
+  }
+
+  onChange(deviceValue) {
+    if (this.startLocation == this.endLocation){
+      this.validLocation = false;
+      (<HTMLInputElement> document.getElementById("submitTrip")).disabled = true;
+    } else {
+      this.validLocation = true;
+      (<HTMLInputElement> document.getElementById("submitTrip")).disabled = false;
+    }
   }
 }

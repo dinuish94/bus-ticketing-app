@@ -51,7 +51,7 @@
                           <div class="form-group">
                             <div class="form-group">
                               <label for="sel1">Select Destination:</label>
-                              <select class="form-control" id="sel1" [(ngModel)]="endLocation">
+                              <select class="form-control" id="sel1" [(ngModel)]="endLocation" (change)="onChange($event.target.value)">
                                 <option *ngFor="let busHalt of busHalts" [value]="busHalt.location">
                                   {{busHalt.location}}
                                 </option>
@@ -60,6 +60,11 @@
                           </div>
                         </div>
                       </div>
+                      <div class="alert alert-warning" *ngIf="!validLocation">
+                          <div class="container">
+                              Please select a valid destination!
+                         </div>
+                     </div>
                     </div>
                   </div>
                 </div>
@@ -100,7 +105,7 @@
       <div class="card-action">
         <div class="row">
           <div class="col-md-3 col-sm-6 pull-right">
-            <button href="#fakelink" *ngIf="!showPayment" class="btn btn-block btn-lg btn-fill btn-default" (click)="addTrip()">Submit</button>
+            <button href="#fakelink" *ngIf="!showPayment" class="btn btn-block btn-lg btn-fill btn-default" (click)="addTrip()" id="submitTrip">Submit</button>
             <button href="#fakelink" *ngIf="showPayment && payWithCash" class="btn btn-block btn-lg btn-fill btn-default" (click)="makePaymentWithCash()">Pay With Cash</button>
             <button href="#fakelink" *ngIf="showPayment && !payWithCash" class="btn btn-block btn-lg btn-fill btn-default" (click)="makePaymentWithCard()">Pay With Card</button>
           </div>
