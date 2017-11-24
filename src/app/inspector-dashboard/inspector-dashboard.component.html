@@ -1,0 +1,56 @@
+<div class="row" >
+  <!-- Card Projects -->
+  <div class="col-md-10 col-md-offset-1">
+    <div class="card">
+
+      <div class="card-content">
+        <div class="row">
+          <div class="col-md-3">
+            <div class="form-group">
+                <label for="token">Enter token</label>
+                <input type="text" id="token" name="token" [(ngModel)]="token"class="form-control"/>
+            </div>
+          </div>
+          <div class="col-md-2">
+              <div class="form-group">
+                  <button class="btn btn-sm btn-fill btn-default" (click)="getTrips()">OK</button> 
+              </div>             
+          </div>
+        </div>
+        <div class="row" *ngIf="showTable">
+            <div class="col-md-12" style="padding: 5%">
+                <table class="table table-hover">
+                    <thead>
+                      <tr>
+                        <th>#</th>
+                        <th>Date</th>
+                        <th>Start Location</th>
+                        <th>Start Time</th>
+                        <th>Destination</th>
+                        <th>Arrival Time</th>
+                        <th>Distance</th>
+                        <!-- <th>Rate</th>
+                        <th>Price</th> -->
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let trip of trips" [ngStyle]="{'color': getColor(trip.isCompleted)}">
+                        <th scope="row">{{trip.id}}</th>
+                        <td>{{trip.date}}</td>
+                        <td>{{trip.startBusStop.location}}</td>
+                        <td>{{trip.startTime}}</td>
+                        <td>{{trip.endBusStop.location}}</td> 
+                        <td>{{trip.endTime}}</td> 
+                        <td>{{trip.distance}} km</td>
+                        <!-- <td>Rs. {{trip.rate}}/=</td>              
+                        <td>Rs. {{trip.price}}/=</td> -->
+                      </tr>
+                    </tbody>
+                  </table>
+                  <p>* incomplete trips are in red</p>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
