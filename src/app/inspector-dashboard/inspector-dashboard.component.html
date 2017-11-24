@@ -34,9 +34,9 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr *ngFor="let trip of trips" [ngStyle]="{'color': getColor(trip.isCompleted)}">
+                      <tr *ngFor="let trip of trips" [ngStyle]="{'color': getColor(trip.completed)}">
                         <th scope="row">{{trip.id}}</th>
-                        <td>{{trip.date}}</td>
+                        <td>{{trip.date | date}}</td>
                         <td>{{trip.startBusStop.location}}</td>
                         <td>{{trip.startTime}}</td>
                         <td>{{trip.endBusStop.location}}</td> 

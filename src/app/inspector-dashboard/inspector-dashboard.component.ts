@@ -24,9 +24,9 @@ export class InspectorDashboardComponent implements OnInit {
     });
   }
 
-  public getColor(isCompleted) {
+  public getColor(isCompleted: boolean) {
     if(isCompleted) {
-      return 'blue';
+      return 'black';
     } else {
       return 'red';
     }
