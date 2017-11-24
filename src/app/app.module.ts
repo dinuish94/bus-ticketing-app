@@ -15,6 +15,8 @@ import { CheckinService } from './checkin/checkin.service';
 import { TicketSelectionService } from './ticket-selection/ticket-selection.service';
 import { DriverDashboardComponent } from './driver-dashboard/driver-dashboard.component';
 import { DriverDashboardService } from './driver-dashboard/driver-dashboard.service';
+import { InspectorDashboardComponent } from './inspector-dashboard/inspector-dashboard.component';
+import { InspectTripsService } from './inspector-dashboard/inspect-trips.service';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,8 @@ import { DriverDashboardService } from './driver-dashboard/driver-dashboard.serv
     HomeComponent,
     CheckinComponent,
     CheckoutComponent,
-    DriverDashboardComponent
+    DriverDashboardComponent,
+    InspectorDashboardComponent
   ],
   imports: [
     BrowserModule,
@@ -36,6 +39,7 @@ import { DriverDashboardService } from './driver-dashboard/driver-dashboard.serv
      CheckinService,
      TicketSelectionService,
      DriverDashboardService,
+     InspectTripsService,
      DriverDashboardComponent
   ],
   bootstrap: [AppComponent]
