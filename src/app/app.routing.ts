@@ -16,7 +16,7 @@ const routes: Routes = [
     { path: 'checkin', component: CheckinComponent },   
     { path: 'checkout', component: CheckoutComponent },       
     { path: 'dashboard', component: DriverDashboardComponent },
-    {path: 'inspector-dashboard', component: InspectorDashboardComponent}, 
+    { path: 'inspector-dashboard', component: InspectorDashboardComponent }, 
     { path: '',redirectTo: 'home', pathMatch: 'full'}
 ]
   
